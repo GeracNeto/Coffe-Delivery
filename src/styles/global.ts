@@ -6,3 +6,8 @@ export const GlobalStyle = createGlobalStyle`
     padding:0;
     box-sizing: border-box;
 }`;
+
+/*
+font-family: 'Baloo 2', cursive;
+font-family: 'Roboto', sans-serif;
+*/
