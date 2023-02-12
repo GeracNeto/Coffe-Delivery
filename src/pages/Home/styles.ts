@@ -67,3 +67,16 @@ export const List = styled.ul`
     }
   }
 `;
+
+export const CoffeList = styled.main`
+  border: 1px solid;
+
+  padding: 2rem 10rem;
+
+  h2 {
+    font-family: "Baloo 2", cursive;
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1.3;
+  }
+`;
