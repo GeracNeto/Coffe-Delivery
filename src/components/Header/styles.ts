@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const NavBarStyled = styled.nav`
-  background: ${(props) => props.theme.background};
+  padding: 2rem 10rem;
 
-  padding: 32px 160px;
+  grid-area: header;
 
   display: flex;
   justify-content: space-between;
