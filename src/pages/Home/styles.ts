@@ -3,9 +3,8 @@ import styled from "styled-components";
 export const MainStyled = styled.main`
   display: grid;
   grid-template-columns: 1fr;
-  grid-template-rows: 6.5rem 34rem 102.8rem;
+  grid-template-rows: 34rem 102.8rem;
   grid-template-areas:
-    "header"
     "section"
     "main";
 
