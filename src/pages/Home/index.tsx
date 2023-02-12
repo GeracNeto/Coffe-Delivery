@@ -11,7 +11,6 @@ import { Header } from "../../components/Header";
 export function Home() {
   return (
     <MainStyled>
-      <Header />
       <SectionStyled>
         <div>
           <Slogan>
