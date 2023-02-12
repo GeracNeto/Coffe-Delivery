@@ -1,4 +1,4 @@
-import { List, MainStyled, SectionStyled, Slogan } from "./styles";
+import { CoffeList, List, MainStyled, SectionStyled, Slogan } from "./styles";
 
 import coffee from "../../assets/coffee.svg";
 import cartIcon from "../../assets/cart_icon.svg";
@@ -45,7 +45,9 @@ export function Home() {
         </div>
         <img src={coffee} alt="coffe logo" />
       </SectionStyled>
-      <main>main</main>
+      <CoffeList>
+        <h2>Nossos cafés</h2>
+      </CoffeList>
     </MainStyled>
   );
 }
