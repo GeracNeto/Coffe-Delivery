@@ -7,13 +7,21 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
 }
 
+html{
+    font-size: 100%;
+    height: 100vh;
+}
+
 ul{
     list-style: none;
 }
 
 body{
     -webkit-font-smoothing: antialiased;
+    height: 100vh;
 }
+
+
 `;
 
 /*
