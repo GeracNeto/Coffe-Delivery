@@ -69,6 +69,7 @@ export const List = styled.ul`
 `;
 
 export const CoffeList = styled.main`
+  grid-area: main;
   border: 1px solid;
 
   padding: 2rem 10rem;
@@ -78,5 +79,14 @@ export const CoffeList = styled.main`
     font-size: 2rem;
     font-weight: 800;
     line-height: 1.3;
+    margin-bottom: 3.375rem;
   }
+`;
+
+export const Coffees = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 `;
