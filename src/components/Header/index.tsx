@@ -2,7 +2,7 @@ import { NavBarStyled } from "./styles";
 
 import logo from "../../assets/logo.svg";
 import { Location } from "../Location";
-import { Cart } from "../Cart";
+import { Cart } from "../Buttons/Cart";
 
 export function Header() {
   return (
