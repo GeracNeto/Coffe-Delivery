@@ -1,12 +1,18 @@
-import { CoffeList, List, MainStyled, SectionStyled, Slogan } from "./styles";
+import {
+  Coffees,
+  CoffeList,
+  List,
+  MainStyled,
+  SectionStyled,
+  Slogan,
+} from "./styles";
 
 import coffee from "../../assets/coffee.svg";
 import cartIcon from "../../assets/cart_icon.svg";
 import coffeeIcon from "../../assets/coffee_icon.svg";
 import packageIcon from "../../assets/package_icon.svg";
 import timeIcon from "../../assets/time_icon.svg";
-
-import { Header } from "../../components/Header";
+import { CatalogCard } from "../../components/Cards/CatalogCard";
 
 export function Home() {
   return (
@@ -47,6 +53,22 @@ export function Home() {
       </SectionStyled>
       <CoffeList>
         <h2>Nossos cafés</h2>
+        <Coffees>
+          <CatalogCard />
+          <CatalogCard />
+          <CatalogCard />
+          <CatalogCard />
+          <CatalogCard />
+          <CatalogCard />
+          <CatalogCard />
+          <CatalogCard />
+          <CatalogCard />
+          <CatalogCard />
+          <CatalogCard />
+          <CatalogCard />
+          <CatalogCard />
+          <CatalogCard />
+        </Coffees>
       </CoffeList>
     </MainStyled>
   );
