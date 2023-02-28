@@ -3,8 +3,6 @@ import styled from "styled-components";
 export const NavBarStyled = styled.nav`
   padding: 2rem 10rem;
 
-  background: ${(props) => props.theme.background};
-
   display: flex;
   justify-content: space-between;
   align-items: center;
