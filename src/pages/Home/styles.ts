@@ -7,8 +7,6 @@ export const MainStyled = styled.main`
   grid-template-areas:
     "section"
     "main";
-
-  background: ${(props) => props.theme.background};
 `;
 
 export const SectionStyled = styled.section`
@@ -16,7 +14,7 @@ export const SectionStyled = styled.section`
 
   display: flex;
   gap: 3.5rem;
-  padding: 5.75rem 10rem;
+  margin: 5.75rem 10rem;
 
   div {
     display: flex;
@@ -70,9 +68,8 @@ export const List = styled.ul`
 
 export const CoffeList = styled.main`
   grid-area: main;
-  border: 1px solid;
 
-  padding: 2rem 10rem;
+  margin: 2rem 10rem;
 
   h2 {
     font-family: "Baloo 2", cursive;
