@@ -1,8 +1,8 @@
 import {
   Coffees,
   CoffeList,
+  HomeStyled,
   List,
-  MainStyled,
   SectionStyled,
   Slogan,
 } from "./styles";
@@ -16,7 +16,7 @@ import { CatalogCard } from "./components/CatalogCard";
 
 export function Home() {
   return (
-    <MainStyled>
+    <HomeStyled>
       <SectionStyled>
         <div>
           <Slogan>
@@ -70,6 +70,6 @@ export function Home() {
           <CatalogCard />
         </Coffees>
       </CoffeList>
-    </MainStyled>
+    </HomeStyled>
   );
 }
