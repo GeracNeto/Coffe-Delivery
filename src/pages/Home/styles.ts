@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const MainStyled = styled.main`
+export const HomeStyled = styled.main`
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 34rem 102.8rem;
