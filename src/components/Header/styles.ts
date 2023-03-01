@@ -13,3 +13,27 @@ export const NavBarStyled = styled.nav`
     gap: 1rem;
   }
 `;
+
+export const LocationCardStyled = styled.div`
+  padding: 0.5rem;
+  border-radius: 6px;
+  background: ${(props) => props.theme.product["purple-light"]};
+
+  display: flex;
+  align-items: center;
+
+  p {
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    line-height: 1.3;
+    color: ${(props) => props.theme.product["purple-dark"]};
+    margin: 0;
+  }
+`;
+
+export const CartStyled = styled.div`
+  padding: 0.5rem;
+  border-radius: 6px;
+  background: ${(props) => props.theme.product["yellow-light"]};
+`;

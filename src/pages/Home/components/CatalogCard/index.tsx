@@ -1,14 +1,15 @@
 import {
+  CartCatalogStyled,
   CatalogCardStyled,
   CounterStyled,
   PriceDiv,
   PriceStyled,
   Tag,
+  Counter,
 } from "./styles";
 
-import expressoTradicional from "../../../assets/coffes_types/expresso_tradicional.svg";
-import { Counter } from "../../Selects/Counter";
-import { CartCatalog } from "../../Buttons/CartCatalog";
+import expressoTradicional from "../../../../assets/coffes_types/expresso_tradicional.svg";
+import { Minus, Plus, ShoppingCartSimple } from "phosphor-react";
 
 export function CatalogCard() {
   return (
@@ -25,8 +26,14 @@ export function CatalogCard() {
           <span>9,90</span>
         </PriceStyled>
         <CounterStyled>
-          <Counter />
-          <CartCatalog />
+          <Counter>
+            <Minus size={14} color="#8047F8" />
+            <p>1</p>
+            <Plus size={14} color="#8047F8" />
+          </Counter>
+          <CartCatalogStyled>
+            <ShoppingCartSimple size={22} weight="fill" color="#fff" />
+          </CartCatalogStyled>
         </CounterStyled>
       </PriceDiv>
     </CatalogCardStyled>

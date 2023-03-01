@@ -12,7 +12,7 @@ import cartIcon from "../../assets/cart_icon.svg";
 import coffeeIcon from "../../assets/coffee_icon.svg";
 import packageIcon from "../../assets/package_icon.svg";
 import timeIcon from "../../assets/time_icon.svg";
-import { CatalogCard } from "../../components/Cards/CatalogCard";
+import { CatalogCard } from "./components/CatalogCard";
 
 export function Home() {
   return (
