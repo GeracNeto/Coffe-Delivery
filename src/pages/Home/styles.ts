@@ -7,6 +7,9 @@ export const HomeStyled = styled.main`
   grid-template-areas:
     "section"
     "main";
+
+  max-width: 1440px;
+  margin: 0 auto;
 `;
 
 export const SectionStyled = styled.section`
