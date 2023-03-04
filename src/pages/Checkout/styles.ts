@@ -1,11 +1,31 @@
 import styled, { css } from "styled-components";
 
-export const CheckoutStyled = styled.div`
+export const CheckoutForm = styled.form`
   padding: 5.75rem 10rem;
   margin: 0 auto;
   max-width: 1440px;
   display: flex;
   gap: 2rem;
+`;
+
+export const HeaderContainer = styled.header`
+  width: 100%;
+  padding: 2.5rem 2.5rem 0 2.5rem;
+
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+
+    p {
+      font-size: 0.875rem;
+      color: ${(props) => props.theme.base["base-text"]};
+    }
+  }
 `;
 
 export const LeftContainer = styled.div`
@@ -26,31 +46,14 @@ export const TopContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 1rem;
-
-  header {
-    width: 100%;
-    padding: 2.5rem 2.5rem 0 2.5rem;
-
-    display: flex;
-    align-items: flex-start;
-    gap: 0.5rem;
-
-    div {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-
-      p {
-        font-size: 0.875rem;
-        color: ${(props) => props.theme.base["base-text"]};
-      }
-    }
-  }
 `;
 
 export const BottomtContainer = styled.div`
   height: 12.93rem;
   background: ${(props) => props.theme.base["base-card"]};
+
+  display: flex;
+  flex-direction: column;
 `;
 
 export const RightContainer = styled.div`
@@ -113,7 +116,7 @@ export const InputContainer = styled(BaseInput)<InputContainerProps>`
       : "auto"};
 `;
 
-export const AdressForm = styled.form`
+export const AdressForm = styled.div`
   width: 100%;
   padding: 0 2.5rem 0 2.5rem;
 
@@ -124,5 +127,41 @@ export const AdressForm = styled.form`
   div {
     display: flex;
     gap: 0.75rem;
+  }
+`;
+
+export const PaymentForm = styled.div`
+  width: 100%;
+  padding: 1rem 2.5rem 0 2.5rem;
+
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+`;
+
+export const PaymentCard = styled.label`
+  background: ${(props) => props.theme.base["base-button"]};
+  border-radius: 6px;
+  padding: 1rem;
+
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex: 1;
+
+  input[type="radio"] {
+    display: none;
+  }
+
+  cursor: pointer;
+
+  span {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: ${(props) => props.theme.base["base-text"]};
+  }
+
+  &:hover {
+    background: ${(props) => props.theme.base["base-hover"]};
   }
 `;
