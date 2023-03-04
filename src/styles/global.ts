@@ -21,6 +21,10 @@ body{
     height: 100vh;
 }
 
+body, input, textarea, button{
+    font: 400 1rem Roboto, sans-serif;
+}
+
 
 `;
 
