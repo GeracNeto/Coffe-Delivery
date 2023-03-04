@@ -1,26 +1,43 @@
-import { MapPinLine } from "phosphor-react";
+import { FormEvent, useState } from "react";
+
+import {
+  MapPinLine,
+  CurrencyDollar,
+  CreditCard,
+  Bank,
+  Money,
+} from "phosphor-react";
 import {
   AdressForm,
   BottomtContainer,
-  CheckoutStyled,
+  CheckoutForm,
+  HeaderContainer,
   InputContainer,
   LeftContainer,
+  PaymentCard,
+  PaymentForm,
   RightContainer,
   TopContainer,
 } from "./styles";
 
 export function Checkout() {
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const handleSubmit = (event: FormEvent) => {
+    event.preventDefault();
+    console.log("Opção selecionada:", selectedOption);
+  };
   return (
-    <CheckoutStyled>
+    <CheckoutForm onSubmit={handleSubmit}>
       <LeftContainer>
         <TopContainer>
-          <header>
-            <MapPinLine size={22} weight="thin" color="#C47F17" />
+          <HeaderContainer>
+            <MapPinLine size={22} weight="regular" color="#C47F17" />
             <div>
               <span>Endereço de Entrega</span>
               <p>Informe o endereço onde deseja receber seu pedido</p>
             </div>
-          </header>
+          </HeaderContainer>
 
           <AdressForm>
             <InputContainer placeholder="CEP" variant="cep" />
@@ -36,9 +53,51 @@ export function Checkout() {
             </div>
           </AdressForm>
         </TopContainer>
-        <BottomtContainer>bottom</BottomtContainer>
+        <BottomtContainer>
+          <HeaderContainer>
+            <CurrencyDollar size={22} weight="duotone" color="#8047F8" />
+            <div>
+              <span>Pagamento</span>
+              <p>
+                O pagamento é feito na entrega. Escolha a forma que deseja pagar
+              </p>
+            </div>
+          </HeaderContainer>
+          <PaymentForm>
+            <PaymentCard>
+              <input
+                type="radio"
+                value="credit-card"
+                checked={selectedOption === "credit-card"}
+                onChange={(e) => setSelectedOption(e.target.value)}
+              />
+              <CreditCard size={16} weight="regular" color="#8047F8" />
+              <span>Cartão de crédito</span>
+            </PaymentCard>
+            <PaymentCard>
+              <input
+                type="radio"
+                value="debit-card"
+                checked={selectedOption === "debit-card"}
+                onChange={(e) => setSelectedOption(e.target.value)}
+              />
+              <Bank size={16} weight="regular" color="#8047F8" />
+              <span>Cartão de débito</span>
+            </PaymentCard>
+            <PaymentCard>
+              <input
+                type="radio"
+                value="money"
+                checked={selectedOption === "money"}
+                onChange={(e) => setSelectedOption(e.target.value)}
+              />
+              <Money size={16} weight="regular" color="#8047F8" />
+              <span>Dinheiro</span>
+            </PaymentCard>
+          </PaymentForm>
+        </BottomtContainer>
       </LeftContainer>
-      <RightContainer>right</RightContainer>
-    </CheckoutStyled>
+      <RightContainer>{/* <input type="submit" /> */}</RightContainer>
+    </CheckoutForm>
   );
 }
