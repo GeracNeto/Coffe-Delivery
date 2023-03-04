@@ -1,12 +1,11 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 
 export const CheckoutStyled = styled.div`
-  margin: 5.75rem 10rem;
-
+  padding: 5.75rem 10rem;
+  margin: 0 auto;
+  max-width: 1440px;
   display: flex;
   gap: 2rem;
-
-  height: 37.5rem;
 `;
 
 export const LeftContainer = styled.div`
@@ -22,10 +21,35 @@ export const LeftContainer = styled.div`
 export const TopContainer = styled.div`
   height: 23.25rem;
   background: ${(props) => props.theme.base["base-card"]};
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+
+  header {
+    width: 100%;
+    padding: 2.5rem 2.5rem 0 2.5rem;
+
+    display: flex;
+    align-items: flex-start;
+    gap: 0.5rem;
+
+    div {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+
+      p {
+        font-size: 0.875rem;
+        color: ${(props) => props.theme.base["base-text"]};
+      }
+    }
+  }
 `;
 
 export const BottomtContainer = styled.div`
-  flex: 1;
+  height: 12.93rem;
   background: ${(props) => props.theme.base["base-card"]};
 `;
 
@@ -34,4 +58,71 @@ export const RightContainer = styled.div`
   height: 31.25rem;
   border-radius: 6px 44px;
   background: ${(props) => props.theme.base["base-card"]};
+`;
+
+interface InputContainerProps {
+  variant:
+    | "cep"
+    | "rua"
+    | "numero"
+    | "complemento"
+    | "bairro"
+    | "cidade"
+    | "uf";
+}
+
+const BaseInput = styled.input`
+  background: ${(props) => props.theme.base["base-input"]};
+  border: 1px solid ${(props) => props.theme.base["base-button"]};
+  border-radius: 4px;
+  padding: 0.75rem;
+
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+
+  font-size: 0.875rem;
+
+  &::placeholder {
+    color: ${(props) => props.theme.base["base-label"]};
+    font-size: 0.875rem;
+  }
+
+  &:focus {
+    outline: 0;
+    box-shadow: 0 0 0 2px ${(props) => props.theme.product["yellow-dark"]};
+  }
+`;
+
+export const InputContainer = styled(BaseInput)<InputContainerProps>`
+  width: ${(props) =>
+    props.variant === "cep"
+      ? "12.5rem"
+      : props.variant === "rua"
+      ? "100%"
+      : props.variant === "numero"
+      ? "12.5rem"
+      : props.variant === "complemento"
+      ? "21.75rem"
+      : props.variant === "bairro"
+      ? "12.5rem"
+      : props.variant === "cidade"
+      ? "17.25rem"
+      : props.variant === "uf"
+      ? "3.75rem"
+      : "auto"};
+`;
+
+export const AdressForm = styled.form`
+  width: 100%;
+  padding: 0 2.5rem 0 2.5rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+
+  div {
+    display: flex;
+    gap: 0.75rem;
+  }
 `;
