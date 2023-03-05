@@ -6,19 +6,30 @@ import {
   CreditCard,
   Bank,
   Money,
+  Minus,
+  Plus,
+  Trash,
 } from "phosphor-react";
+
 import {
   AdressForm,
   BottomtContainer,
+  ChangeOrRemoveCoffeeContainer,
   CheckoutForm,
   HeaderContainer,
   InputContainer,
   LeftContainer,
   PaymentCard,
   PaymentForm,
+  RemoveContainer,
   RightContainer,
+  SelectedCoffee,
   TopContainer,
 } from "./styles";
+
+import { Counter } from "../Home/components/CatalogCard/styles";
+
+import expressoTradicional from "../../assets/coffes_types/expresso_tradicional.svg";
 
 // Conditional style when user selects a payment form
 const PaymentStyleOnSelect = {
@@ -115,7 +126,45 @@ export function Checkout() {
           </PaymentForm>
         </BottomtContainer>
       </LeftContainer>
-      <RightContainer>{/* <input type="submit" /> */}</RightContainer>
+      <RightContainer>
+        <SelectedCoffee>
+          <img src={expressoTradicional} alt="coffee-selected" />
+          <ChangeOrRemoveCoffeeContainer>
+            <p>Expresso Tradicional</p>
+            <div>
+              <Counter>
+                <Minus size={14} color="#8047F8" />
+                <p>1</p>
+                <Plus size={14} color="#8047F8" />
+              </Counter>
+              <RemoveContainer>
+                <Trash size={16} color="#8047F8" />
+                <p>Remover</p>
+              </RemoveContainer>
+            </div>
+          </ChangeOrRemoveCoffeeContainer>
+          <span>R$9,90</span>
+        </SelectedCoffee>
+        <SelectedCoffee>
+          <img src={expressoTradicional} alt="coffee-selected" />
+          <ChangeOrRemoveCoffeeContainer>
+            <p>Expresso Tradicional</p>
+            <div>
+              <Counter>
+                <Minus size={14} color="#8047F8" />
+                <p>1</p>
+                <Plus size={14} color="#8047F8" />
+              </Counter>
+              <RemoveContainer>
+                <Trash size={16} color="#8047F8" />
+                <p>Remover</p>
+              </RemoveContainer>
+            </div>
+          </ChangeOrRemoveCoffeeContainer>
+          <span>R$9,90</span>
+        </SelectedCoffee>
+        {/* <input type="submit" /> */}
+      </RightContainer>
     </CheckoutForm>
   );
 }
