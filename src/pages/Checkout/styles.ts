@@ -4,6 +4,7 @@ export const CheckoutForm = styled.form`
   padding: 5.75rem 10rem;
   margin: 0 auto;
   max-width: 1440px;
+  height: 100vh;
   display: flex;
   gap: 2rem;
 `;
@@ -58,7 +59,7 @@ export const BottomtContainer = styled.div`
 
 export const RightContainer = styled.div`
   padding: 0 2.5rem;
-  height: 31.25rem;
+  height: max-content;
   border-radius: 6px 44px;
   background: ${(props) => props.theme.base["base-card"]};
 
@@ -145,6 +146,9 @@ const BaseInput = styled.input`
 `;
 
 export const InputContainer = styled(BaseInput)<InputContainerProps>`
+  font-size: 0.875rem;
+  color: ${(props) => props.theme.base["base-text"]};
+
   width: ${(props) =>
     props.variant === "cep"
       ? "12.5rem"
@@ -212,5 +216,49 @@ export const PaymentCard = styled.label`
 
   &:hover {
     background: ${(props) => props.theme.base["base-hover"]};
+  }
+`;
+
+export const FooterContainer = styled.footer`
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+
+  div {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+      font-size: 0.875rem;
+      color: ${(props) => props.theme.base["base-text"]};
+    }
+
+    span {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+  }
+`;
+
+export const SubmitButton = styled.input`
+  margin-top: 1.5rem;
+  margin-bottom: 2.5rem;
+  padding: 0.75rem 0.5rem;
+  border: none;
+  border-radius: 6px;
+
+  font-size: 0.875rem;
+  color: ${(props) => props.theme.white};
+  font-weight: 700;
+  text-transform: uppercase;
+
+  background: ${(props) => props.theme.product.yellow};
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: ${(props) => props.theme.product["yellow-dark"]};
   }
 `;
