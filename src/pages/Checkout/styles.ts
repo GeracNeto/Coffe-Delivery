@@ -1,4 +1,4 @@
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 
 export const CheckoutForm = styled.form`
   padding: 5.75rem 10rem;
@@ -57,10 +57,57 @@ export const BottomtContainer = styled.div`
 `;
 
 export const RightContainer = styled.div`
-  flex: 1;
+  padding: 0 2.5rem;
   height: 31.25rem;
   border-radius: 6px 44px;
   background: ${(props) => props.theme.base["base-card"]};
+
+  display: flex;
+  flex-direction: column;
+`;
+
+export const SelectedCoffee = styled.div`
+  padding: 2.5rem 0;
+  display: flex;
+  align-items: flex-start;
+  gap: 1.25rem;
+
+  border-bottom: 1px solid ${(props) => props.theme.base["base-button"]};
+  img {
+    width: 4rem;
+  }
+
+  span {
+    font-weight: 700;
+    margin-left: 3.125rem;
+  }
+`;
+
+export const ChangeOrRemoveCoffeeContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+
+  p {
+    margin: 0;
+  }
+
+  div {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+`;
+
+export const RemoveContainer = styled.div`
+  padding: 0.5rem;
+  border-radius: 6px;
+  background: ${(props) => props.theme.base["base-button"]};
+  p {
+    text-transform: uppercase;
+    color: ${(props) => props.theme.base["base-text"]};
+    font-size: 0.75rem;
+  }
 `;
 
 interface InputContainerProps {
