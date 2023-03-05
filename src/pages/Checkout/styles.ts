@@ -161,6 +161,8 @@ export const PaymentCard = styled.label`
     color: ${(props) => props.theme.base["base-text"]};
   }
 
+  transition: background-color 0.2s;
+
   &:hover {
     background: ${(props) => props.theme.base["base-hover"]};
   }
