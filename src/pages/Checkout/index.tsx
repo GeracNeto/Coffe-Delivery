@@ -20,6 +20,13 @@ import {
   TopContainer,
 } from "./styles";
 
+// Conditional style when user selects a payment form
+const PaymentStyleOnSelect = {
+  background: "#EBE5F9",
+  border: "1px solid #8047F8",
+  transition: "0.2s ease-in-out",
+};
+
 export function Checkout() {
   const [selectedOption, setSelectedOption] = useState("");
 
@@ -27,6 +34,7 @@ export function Checkout() {
     event.preventDefault();
     console.log("Opção selecionada:", selectedOption);
   };
+
   return (
     <CheckoutForm onSubmit={handleSubmit}>
       <LeftContainer>
@@ -64,7 +72,11 @@ export function Checkout() {
             </div>
           </HeaderContainer>
           <PaymentForm>
-            <PaymentCard>
+            <PaymentCard
+              style={
+                selectedOption === "credit-card" ? PaymentStyleOnSelect : {}
+              }
+            >
               <input
                 type="radio"
                 value="credit-card"
@@ -74,7 +86,11 @@ export function Checkout() {
               <CreditCard size={16} weight="regular" color="#8047F8" />
               <span>Cartão de crédito</span>
             </PaymentCard>
-            <PaymentCard>
+            <PaymentCard
+              style={
+                selectedOption === "debit-card" ? PaymentStyleOnSelect : {}
+              }
+            >
               <input
                 type="radio"
                 value="debit-card"
@@ -84,7 +100,9 @@ export function Checkout() {
               <Bank size={16} weight="regular" color="#8047F8" />
               <span>Cartão de débito</span>
             </PaymentCard>
-            <PaymentCard>
+            <PaymentCard
+              style={selectedOption === "money" ? PaymentStyleOnSelect : {}}
+            >
               <input
                 type="radio"
                 value="money"
