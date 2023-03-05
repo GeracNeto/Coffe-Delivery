@@ -109,10 +109,6 @@ export const Counter = styled.div`
   border-radius: 6px;
 
   p {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
-    font-size: 1rem;
-    line-height: 1.3;
     text-align: center;
     margin: 0;
 
