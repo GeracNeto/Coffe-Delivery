@@ -18,7 +18,7 @@ ul{
 
 body{
     -webkit-font-smoothing: antialiased;
-    height: 100vh;
+    background: ${(props) => props.theme.background};
 }
 
 body, input, textarea, button{
