@@ -25,6 +25,8 @@ import {
   RightContainer,
   SelectedCoffee,
   TopContainer,
+  FooterContainer,
+  SubmitButton,
 } from "./styles";
 
 import { Counter } from "../Home/components/CatalogCard/styles";
@@ -163,7 +165,21 @@ export function Checkout() {
           </ChangeOrRemoveCoffeeContainer>
           <span>R$9,90</span>
         </SelectedCoffee>
-        {/* <input type="submit" /> */}
+        <FooterContainer>
+          <div>
+            <p>Total de itens</p>
+            <p>R$ 29,70</p>
+          </div>
+          <div>
+            <p>Entrega</p>
+            <p>R$ 3,50</p>
+          </div>
+          <div>
+            <span>Total</span>
+            <span>R$ 33,20</span>
+          </div>
+        </FooterContainer>
+        <SubmitButton type="submit" value="Confirmar Pedido" />
       </RightContainer>
     </CheckoutForm>
   );
