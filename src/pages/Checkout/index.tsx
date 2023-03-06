@@ -33,6 +33,8 @@ import { Counter } from "../Home/components/CatalogCard/styles";
 
 import expressoTradicional from "../../assets/coffes_types/expresso_tradicional.svg";
 
+import { useNavigate } from "react-router-dom";
+
 // Conditional style when user selects a payment form
 const PaymentStyleOnSelect = {
   background: "#EBE5F9",
@@ -41,11 +43,14 @@ const PaymentStyleOnSelect = {
 };
 
 export function Checkout() {
+  const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("");
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
     console.log("Opção selecionada:", selectedOption);
+
+    navigate("/success");
   };
 
   return (
@@ -179,7 +184,11 @@ export function Checkout() {
             <span>R$ 33,20</span>
           </div>
         </FooterContainer>
-        <SubmitButton type="submit" value="Confirmar Pedido" />
+        <SubmitButton
+          type="submit"
+          value="Confirmar Pedido"
+          onSubmit={handleSubmit}
+        />
       </RightContainer>
     </CheckoutForm>
   );

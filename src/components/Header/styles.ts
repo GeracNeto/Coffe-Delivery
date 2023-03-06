@@ -14,6 +14,10 @@ export const NavBarStyled = styled.nav`
     display: flex;
     gap: 1rem;
   }
+
+  img {
+    cursor: pointer;
+  }
 `;
 
 export const LocationCardStyled = styled.div`
@@ -35,4 +39,5 @@ export const CartStyled = styled.div`
   padding: 0.5rem;
   border-radius: 6px;
   background: ${(props) => props.theme.product["yellow-light"]};
+  cursor: pointer;
 `;
