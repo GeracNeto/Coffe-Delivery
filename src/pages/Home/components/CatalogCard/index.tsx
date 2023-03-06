@@ -11,7 +11,14 @@ import {
 import expressoTradicional from "../../../../assets/coffes_types/expresso_tradicional.svg";
 import { Minus, Plus, ShoppingCartSimple } from "phosphor-react";
 
+import { useNavigate } from "react-router-dom";
+
 export function CatalogCard() {
+  const navigate = useNavigate();
+
+  function navigateToCheckout() {
+    navigate("/checkout");
+  }
   return (
     <CatalogCardStyled>
       <img src={expressoTradicional} alt="expresso-tradicional" />
@@ -27,11 +34,11 @@ export function CatalogCard() {
         </PriceStyled>
         <CounterStyled>
           <Counter>
-            <Minus size={14} color="#8047F8" />
+            <Minus size={14} color="#8047F8" style={{ cursor: "pointer" }} />
             <p>1</p>
-            <Plus size={14} color="#8047F8" />
+            <Plus size={14} color="#8047F8" style={{ cursor: "pointer" }} />
           </Counter>
-          <CartCatalogStyled>
+          <CartCatalogStyled onClick={navigateToCheckout}>
             <ShoppingCartSimple size={22} weight="fill" color="#fff" />
           </CartCatalogStyled>
         </CounterStyled>
