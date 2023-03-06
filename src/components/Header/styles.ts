@@ -25,10 +25,7 @@ export const LocationCardStyled = styled.div`
   align-items: center;
 
   p {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
     font-size: 0.875rem;
-    line-height: 1.3;
     color: ${(props) => props.theme.product["purple-dark"]};
     margin: 0;
   }
