@@ -94,6 +94,12 @@ export const CartCatalogStyled = styled.div`
   padding: 0.5rem;
   border-radius: 6px;
   background: ${(props) => props.theme.product["purple-dark"]};
+  transition: background-color 0.2s;
+
+  &:hover {
+    cursor: pointer;
+    background: ${(props) => props.theme.product.purple};
+  }
 `;
 
 export const Counter = styled.div`
@@ -103,7 +109,7 @@ export const Counter = styled.div`
   justify-content: center;
   align-items: center;
   align-content: center;
-  padding: 0.5rem;
+  padding: 0.65rem;
   gap: 0.5rem;
 
   border-radius: 6px;
