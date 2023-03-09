@@ -13,8 +13,12 @@ import coffeeIcon from "../../assets/coffee_icon.svg";
 import packageIcon from "../../assets/package_icon.svg";
 import timeIcon from "../../assets/time_icon.svg";
 import { CatalogCard } from "./components/CatalogCard";
+import { useContext } from "react";
+import { CoffeesLitsContext } from "../../contexts/CoffeesLitsContext";
 
 export function Home() {
+  const coffeesList = useContext(CoffeesLitsContext);
+
   return (
     <HomeStyled>
       <SectionStyled>
@@ -54,20 +58,17 @@ export function Home() {
       <CoffeList>
         <h2>Nossos cafés</h2>
         <Coffees>
-          <CatalogCard />
-          <CatalogCard />
-          <CatalogCard />
-          <CatalogCard />
-          <CatalogCard />
-          <CatalogCard />
-          <CatalogCard />
-          <CatalogCard />
-          <CatalogCard />
-          <CatalogCard />
-          <CatalogCard />
-          <CatalogCard />
-          <CatalogCard />
-          <CatalogCard />
+          {coffeesList.map((item) => (
+            <CatalogCard
+              key={item.img}
+              img={item.img}
+              title={item.title}
+              description={item.description}
+              price={item.price}
+              tags={item.tags}
+              quantity={item.quantity}
+            />
+          ))}
         </Coffees>
       </CoffeList>
     </HomeStyled>
