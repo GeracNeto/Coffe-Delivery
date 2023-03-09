@@ -17,7 +17,7 @@ import { useContext } from "react";
 import { CoffeesLitsContext } from "../../contexts/CoffeesLitsContext";
 
 export function Home() {
-  const coffeesList = useContext(CoffeesLitsContext);
+  const { coffeesList } = useContext(CoffeesLitsContext);
 
   return (
     <HomeStyled>

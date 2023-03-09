@@ -28,12 +28,13 @@ export function CatalogCard({
 
   const [coffeeQuantity, setCoffeeQuantity] = useState(quantity);
 
-  const coffeesList = useContext(CoffeesLitsContext);
+  const { coffeesList, updateCoffeesList } = useContext(CoffeesLitsContext);
 
   function navigateToCheckout() {
     navigate("/checkout");
   }
 
+  /*
   useEffect(() => {
     const newList = coffeesList.map((coffee) => {
       if (coffee.img === img) {
@@ -44,8 +45,10 @@ export function CatalogCard({
       } else return coffee;
     });
 
-    console.log(newList);
-  }, [coffeeQuantity, coffeesList, img]);
+    updateCoffeesList(newList);
+  }, [coffeeQuantity, coffeesList, img, updateCoffeesList]);
+
+*/
 
   return (
     <CatalogCardStyled>
@@ -72,7 +75,7 @@ export function CatalogCard({
               style={{ cursor: "pointer" }}
               onClick={() => setCoffeeQuantity(coffeeQuantity - 1)}
             />
-            <p>{coffeeQuantity}</p>
+            <p>{quantity}</p>
             <Plus
               size={14}
               color="#8047F8"
