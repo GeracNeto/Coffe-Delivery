@@ -28,14 +28,21 @@ export const CatalogCardStyled = styled.div`
     margin: 0;
   }
   p {
-    font-family: "Roboto", sans-serif;
-    font-weight: 400;
     font-size: 0.875rem;
     line-height: 1.3;
     color: ${(props) => props.theme.base["base-label"]};
     text-align: center;
     margin: 0;
   }
+`;
+
+export const TagContainer = styled.div`
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
 `;
 
 export const Tag = styled.div`
