@@ -4,7 +4,6 @@ export const CheckoutForm = styled.form`
   padding: 5.75rem 10rem;
   margin: 0 auto;
   max-width: 1440px;
-  height: 100vh;
   display: flex;
   gap: 2rem;
 `;
@@ -58,6 +57,7 @@ export const BottomtContainer = styled.div`
 `;
 
 export const RightContainer = styled.div`
+  width: 100%;
   padding: 0 2.5rem;
   height: max-content;
   border-radius: 6px 44px;
@@ -71,6 +71,7 @@ export const SelectedCoffee = styled.div`
   padding: 2.5rem 0;
   display: flex;
   align-items: flex-start;
+  justify-content: space-between;
   gap: 1.25rem;
 
   border-bottom: 1px solid ${(props) => props.theme.base["base-button"]};
@@ -80,7 +81,6 @@ export const SelectedCoffee = styled.div`
 
   span {
     font-weight: 700;
-    margin-left: 3.125rem;
   }
 `;
 
