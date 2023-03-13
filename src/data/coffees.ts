@@ -22,7 +22,7 @@ export interface CoffeesProps {
   quantity: number;
 }
 
-export const coffeesList: CoffeesProps[] = [
+export const coffees: CoffeesProps[] = [
   {
     img: expressoTradicional,
     tags: ["TRADICIONAL"],
