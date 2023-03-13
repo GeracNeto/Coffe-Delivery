@@ -13,7 +13,7 @@ import { Minus, Plus, ShoppingCartSimple } from "phosphor-react";
 
 import { useNavigate } from "react-router-dom";
 import { CoffeesProps } from "../../../../data/coffees";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { CoffeesLitsContext } from "../../../../contexts/CoffeesLitsContext";
 
 export function CatalogCard({
@@ -26,29 +26,11 @@ export function CatalogCard({
 }: CoffeesProps) {
   const navigate = useNavigate();
 
-  const [coffeeQuantity, setCoffeeQuantity] = useState(quantity);
-
-  const { coffeesList, updateCoffeesList } = useContext(CoffeesLitsContext);
+  const { handleQuantity } = useContext(CoffeesLitsContext);
 
   function navigateToCheckout() {
     navigate("/checkout");
   }
-
-  /*
-  useEffect(() => {
-    const newList = coffeesList.map((coffee) => {
-      if (coffee.img === img) {
-        return {
-          ...coffee,
-          quantity: coffeeQuantity,
-        };
-      } else return coffee;
-    });
-
-    updateCoffeesList(newList);
-  }, [coffeeQuantity, coffeesList, img, updateCoffeesList]);
-
-*/
 
   return (
     <CatalogCardStyled>
@@ -73,16 +55,14 @@ export function CatalogCard({
               size={14}
               color="#8047F8"
               style={{ cursor: "pointer" }}
-              onClick={() => setCoffeeQuantity(coffeeQuantity - 1)}
+              onClick={() => handleQuantity(img, "sub")}
             />
             <p>{quantity}</p>
             <Plus
               size={14}
               color="#8047F8"
               style={{ cursor: "pointer" }}
-              onClick={() => {
-                setCoffeeQuantity(coffeeQuantity + 1);
-              }}
+              onClick={() => handleQuantity(img, "add")}
             />
           </Counter>
           <CartCatalogStyled onClick={navigateToCheckout}>
