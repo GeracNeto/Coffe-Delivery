@@ -1,34 +1,61 @@
-import { createContext, ReactNode, useState } from "react";
-import { CoffeesProps, coffeesList } from "../data/coffees";
+import { createContext, ReactNode, useEffect, useState } from "react";
+import { CoffeesProps, coffees } from "../data/coffees";
 
 interface CoffeesContextProps {
   coffeesList: CoffeesProps[];
-  updateCoffeesList: (newList: CoffeesProps[]) => void;
+  cart: CoffeesProps[];
+  handleQuantity: (imgAsId: string, query: string) => void;
 }
-
-export const CoffeesLitsContext = createContext<CoffeesContextProps>({
-  coffeesList,
-  updateCoffeesList: () => {},
-});
 
 interface CoffeesLitsContextProps {
   children: ReactNode;
 }
 
+// Creates a Context with coffees as initial value and empty Cart
+export const CoffeesLitsContext = createContext<CoffeesContextProps>({
+  coffeesList: coffees,
+  cart: [],
+  handleQuantity: () => {},
+});
+
 export function CoffeesLitsContextProvider({
   children,
 }: CoffeesLitsContextProps) {
-  const [coffeesListCart, setCoffeesListCart] =
-    useState<CoffeesProps[]>(coffeesList);
+  const [coffeesList, setCoffeesList] = useState(coffees);
+  const [cart, setCart] = useState<CoffeesProps[]>([]);
 
-  function updateCoffeesList(newList: CoffeesProps[]) {
-    setCoffeesListCart(newList);
+  /* This function receives img string and query: (add | sub) and returns a new array
+     with quantities values updated
+  */
+  function handleQuantity(imgAsId: string, query: string) {
+    const newCoffeesList = coffeesList.map((coffee) => {
+      if (coffee.img === imgAsId && query === "add") {
+        coffee.quantity += 1;
+      } else if (
+        coffee.img === imgAsId &&
+        query === "sub" &&
+        coffee.quantity !== 0
+      ) {
+        coffee.quantity -= 1;
+      }
+      return coffee;
+    });
+    setCoffeesList(newCoffeesList);
   }
 
+  // This useEffect generates a CartList whenever the user add some coffee to the Cart
+  useEffect(() => {
+    function generateCartList() {
+      const cartList = coffeesList.filter((coffee) => coffee.quantity !== 0);
+
+      setCart(cartList);
+    }
+
+    generateCartList();
+  }, [coffeesList]);
+
   return (
-    <CoffeesLitsContext.Provider
-      value={{ coffeesList: coffeesListCart, updateCoffeesList }}
-    >
+    <CoffeesLitsContext.Provider value={{ coffeesList, handleQuantity, cart }}>
       {children}
     </CoffeesLitsContext.Provider>
   );
