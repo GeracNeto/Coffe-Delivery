@@ -1,4 +1,4 @@
-import { FormEvent, useState } from "react";
+import { FormEvent, useContext, useState } from "react";
 
 import {
   MapPinLine,
@@ -31,9 +31,9 @@ import {
 
 import { Counter } from "../Home/components/CatalogCard/styles";
 
-import expressoTradicional from "../../assets/coffes_types/expresso_tradicional.svg";
-
 import { useNavigate } from "react-router-dom";
+
+import { CoffeesLitsContext } from "../../contexts/CoffeesLitsContext";
 
 // Conditional style when user selects a payment form
 const PaymentStyleOnSelect = {
@@ -45,6 +45,8 @@ const PaymentStyleOnSelect = {
 export function Checkout() {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("");
+  const { cart, handleQuantity, removeCoffeeFromCart } =
+    useContext(CoffeesLitsContext);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -134,42 +136,39 @@ export function Checkout() {
         </BottomtContainer>
       </LeftContainer>
       <RightContainer>
-        <SelectedCoffee>
-          <img src={expressoTradicional} alt="coffee-selected" />
-          <ChangeOrRemoveCoffeeContainer>
-            <p>Expresso Tradicional</p>
-            <div>
-              <Counter>
-                <Minus size={14} color="#8047F8" />
-                <p>1</p>
-                <Plus size={14} color="#8047F8" />
-              </Counter>
-              <RemoveContainer>
-                <Trash size={16} color="#8047F8" />
-                <p>Remover</p>
-              </RemoveContainer>
-            </div>
-          </ChangeOrRemoveCoffeeContainer>
-          <span>R$9,90</span>
-        </SelectedCoffee>
-        <SelectedCoffee>
-          <img src={expressoTradicional} alt="coffee-selected" />
-          <ChangeOrRemoveCoffeeContainer>
-            <p>Expresso Tradicional</p>
-            <div>
-              <Counter>
-                <Minus size={14} color="#8047F8" />
-                <p>1</p>
-                <Plus size={14} color="#8047F8" />
-              </Counter>
-              <RemoveContainer>
-                <Trash size={16} color="#8047F8" />
-                <p>Remover</p>
-              </RemoveContainer>
-            </div>
-          </ChangeOrRemoveCoffeeContainer>
-          <span>R$9,90</span>
-        </SelectedCoffee>
+        {cart.map((item) => (
+          <SelectedCoffee key={item.img}>
+            <img src={item.img} alt="coffee-selected" />
+            <ChangeOrRemoveCoffeeContainer>
+              <p>{item.title}</p>
+              <div>
+                <Counter>
+                  <Minus
+                    size={14}
+                    color="#8047F8"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleQuantity(item.img, "sub")}
+                  />
+                  <p>{item.quantity}</p>
+                  <Plus
+                    size={14}
+                    color="#8047F8"
+                    style={{ cursor: "pointer" }}
+                    onClick={() => handleQuantity(item.img, "add")}
+                  />
+                </Counter>
+                <RemoveContainer
+                  style={{ cursor: "pointer" }}
+                  onClick={() => removeCoffeeFromCart(item.img)}
+                >
+                  <Trash size={16} color="#8047F8" />
+                  <p>Remover</p>
+                </RemoveContainer>
+              </div>
+            </ChangeOrRemoveCoffeeContainer>
+            <span>{item.price}</span>
+          </SelectedCoffee>
+        ))}
         <FooterContainer>
           <div>
             <p>Total de itens</p>
