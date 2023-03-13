@@ -4,6 +4,8 @@ import { CoffeesProps, coffees } from "../data/coffees";
 interface CoffeesContextProps {
   coffeesList: CoffeesProps[];
   cart: CoffeesProps[];
+
+  removeCoffeeFromCart: (imgAsId: string) => void;
   handleQuantity: (imgAsId: string, query: string) => void;
 }
 
@@ -15,6 +17,8 @@ interface CoffeesLitsContextProps {
 export const CoffeesLitsContext = createContext<CoffeesContextProps>({
   coffeesList: coffees,
   cart: [],
+
+  removeCoffeeFromCart: () => {},
   handleQuantity: () => {},
 });
 
@@ -43,6 +47,11 @@ export function CoffeesLitsContextProvider({
     setCoffeesList(newCoffeesList);
   }
 
+  function removeCoffeeFromCart(imgAsId: string) {
+    const newCartList = cart.filter((item) => item.img !== imgAsId);
+    setCart(newCartList);
+  }
+
   // This useEffect generates a CartList whenever the user add some coffee to the Cart
   useEffect(() => {
     function generateCartList() {
@@ -55,7 +64,9 @@ export function CoffeesLitsContextProvider({
   }, [coffeesList]);
 
   return (
-    <CoffeesLitsContext.Provider value={{ coffeesList, handleQuantity, cart }}>
+    <CoffeesLitsContext.Provider
+      value={{ coffeesList, handleQuantity, cart, removeCoffeeFromCart }}
+    >
       {children}
     </CoffeesLitsContext.Provider>
   );
