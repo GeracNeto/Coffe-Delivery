@@ -45,8 +45,7 @@ const PaymentStyleOnSelect = {
 export function Checkout() {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("");
-  const { cart, handleQuantity, removeCoffeeFromCart } =
-    useContext(CoffeesLitsContext);
+  const { cart, handleQuantity, removeCoffee } = useContext(CoffeesLitsContext);
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -159,7 +158,7 @@ export function Checkout() {
                 </Counter>
                 <RemoveContainer
                   style={{ cursor: "pointer" }}
-                  onClick={() => removeCoffeeFromCart(item.img)}
+                  onClick={() => removeCoffee(item.img)}
                 >
                   <Trash size={16} color="#8047F8" />
                   <p>Remover</p>
