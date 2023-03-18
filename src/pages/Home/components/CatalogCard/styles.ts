@@ -127,4 +127,8 @@ export const Counter = styled.div`
 
     color: ${(props) => props.theme.base["base-title"]};
   }
+
+  svg {
+    cursor: pointer;
+  }
 `;
