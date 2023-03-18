@@ -121,11 +121,11 @@ export const RemoveContainer = styled.div`
 interface InputContainerProps {
   variant:
     | "cep"
-    | "rua"
-    | "numero"
-    | "complemento"
-    | "bairro"
-    | "cidade"
+    | "street"
+    | "number"
+    | "complement"
+    | "district"
+    | "city"
     | "uf";
 }
 
@@ -159,15 +159,15 @@ export const InputContainer = styled(BaseInput)<InputContainerProps>`
   width: ${(props) =>
     props.variant === "cep"
       ? "12.5rem"
-      : props.variant === "rua"
+      : props.variant === "street"
       ? "100%"
-      : props.variant === "numero"
+      : props.variant === "number"
       ? "12.5rem"
-      : props.variant === "complemento"
+      : props.variant === "complement"
       ? "21.75rem"
-      : props.variant === "bairro"
+      : props.variant === "district"
       ? "12.5rem"
-      : props.variant === "cidade"
+      : props.variant === "city"
       ? "17.25rem"
       : props.variant === "uf"
       ? "3.75rem"
