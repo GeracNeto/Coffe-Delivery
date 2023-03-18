@@ -104,10 +104,17 @@ export const RemoveContainer = styled.div`
   padding: 0.5rem;
   border-radius: 6px;
   background: ${(props) => props.theme.base["base-button"]};
+  cursor: pointer;
   p {
     text-transform: uppercase;
     color: ${(props) => props.theme.base["base-text"]};
     font-size: 0.75rem;
+  }
+
+  transition: background-color 0.2s;
+
+  &:hover {
+    background: ${(props) => props.theme.base["base-hover"]};
   }
 `;
 
