@@ -37,6 +37,10 @@ import { CoffeesLitsContext } from "../../contexts/CoffeesLitsContext";
 import { priceFormatter } from "../../utils/formatter";
 import { useCaclTotal } from "../../hooks/useCalcTotal";
 
+import * as z from "zod";
+import { useForm, Controller } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 // Conditional style when user selects a payment form
 const PaymentStyleOnSelect = {
   background: "#EBE5F9",
@@ -44,21 +48,43 @@ const PaymentStyleOnSelect = {
   transition: "0.2s ease-in-out",
 };
 
+const purchaseOrderFormSchema = z.object({
+  cep: z.number(),
+  street: z.string(),
+  number: z.number(),
+  complement: z.string(),
+  district: z.string(),
+  city: z.string(),
+  uf: z.string(),
+  paymentForm: z.enum(["credit-card", "debit-card", "money"]),
+});
+
+type PurchaseOrderFormInputs = z.infer<typeof purchaseOrderFormSchema>;
+
 export function Checkout() {
+  const {
+    control,
+    register,
+    handleSubmit,
+    reset,
+    formState: { isSubmitting },
+  } = useForm<PurchaseOrderFormInputs>({
+    resolver: zodResolver(purchaseOrderFormSchema),
+  });
+
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("");
   const { cart, handleQuantity, removeCoffee } = useContext(CoffeesLitsContext);
   const total = useCaclTotal();
 
-  const handleSubmit = (event: FormEvent) => {
-    event.preventDefault();
-    console.log("Opção selecionada:", selectedOption);
-
+  function handlePurchaseOrder(data: PurchaseOrderFormInputs) {
     navigate("/success");
-  };
+    console.log(data);
+    reset();
+  }
 
   return (
-    <CheckoutForm onSubmit={handleSubmit}>
+    <CheckoutForm onSubmit={handleSubmit(handlePurchaseOrder)}>
       <LeftContainer>
         <TopContainer>
           <HeaderContainer>
@@ -70,16 +96,57 @@ export function Checkout() {
           </HeaderContainer>
 
           <AdressForm>
-            <InputContainer placeholder="CEP" variant="cep" />
-            <InputContainer placeholder="Rua" variant="rua" />
+            <InputContainer
+              type="number"
+              placeholder="CEP"
+              variant="cep"
+              required
+              {...register("cep", { valueAsNumber: true })}
+            />
+            <InputContainer
+              type="text"
+              placeholder="Rua"
+              variant="street"
+              required
+              {...register("street")}
+            />
             <div>
-              <InputContainer placeholder="Número" variant="numero" />
-              <InputContainer placeholder="Complemento" variant="complemento" />
+              <InputContainer
+                type="number"
+                placeholder="Número"
+                variant="number"
+                required
+                {...register("number", { valueAsNumber: true })}
+              />
+              <InputContainer
+                type="text"
+                placeholder="Complemento"
+                variant="complement"
+                {...register("complement")}
+              />
             </div>
             <div>
-              <InputContainer placeholder="Bairro" variant="bairro" />
-              <InputContainer placeholder="Cidade" variant="cidade" />
-              <InputContainer placeholder="UF" variant="uf" />
+              <InputContainer
+                type="text"
+                placeholder="Bairro"
+                variant="district"
+                required
+                {...register("district")}
+              />
+              <InputContainer
+                type="text"
+                placeholder="Cidade"
+                variant="city"
+                required
+                {...register("city")}
+              />
+              <InputContainer
+                type="text"
+                placeholder="UF"
+                variant="uf"
+                required
+                {...register("uf")}
+              />
             </div>
           </AdressForm>
         </TopContainer>
@@ -93,48 +160,65 @@ export function Checkout() {
               </p>
             </div>
           </HeaderContainer>
-          <PaymentForm>
-            <PaymentCard
-              style={
-                selectedOption === "credit-card" ? PaymentStyleOnSelect : {}
-              }
-            >
-              <input
-                type="radio"
-                value="credit-card"
-                checked={selectedOption === "credit-card"}
-                onChange={(e) => setSelectedOption(e.target.value)}
-              />
-              <CreditCard size={16} weight="regular" color="#8047F8" />
-              <span>Cartão de crédito</span>
-            </PaymentCard>
-            <PaymentCard
-              style={
-                selectedOption === "debit-card" ? PaymentStyleOnSelect : {}
-              }
-            >
-              <input
-                type="radio"
-                value="debit-card"
-                checked={selectedOption === "debit-card"}
-                onChange={(e) => setSelectedOption(e.target.value)}
-              />
-              <Bank size={16} weight="regular" color="#8047F8" />
-              <span>Cartão de débito</span>
-            </PaymentCard>
-            <PaymentCard
-              style={selectedOption === "money" ? PaymentStyleOnSelect : {}}
-            >
-              <input
-                type="radio"
-                value="money"
-                checked={selectedOption === "money"}
-                onChange={(e) => setSelectedOption(e.target.value)}
-              />
-              <Money size={16} weight="regular" color="#8047F8" />
-              <span>Dinheiro</span>
-            </PaymentCard>
-          </PaymentForm>
+          <Controller
+            control={control}
+            name="paymentForm"
+            render={({ field }) => {
+              return (
+                <PaymentForm
+                  onChange={field.onChange}
+                  defaultValue={field.value}
+                >
+                  <PaymentCard
+                    style={
+                      selectedOption === "credit-card"
+                        ? PaymentStyleOnSelect
+                        : {}
+                    }
+                  >
+                    <input
+                      type="radio"
+                      value="credit-card"
+                      checked={selectedOption === "credit-card"}
+                      onChange={(e) => setSelectedOption(e.target.value)}
+                    />
+                    <CreditCard size={16} weight="regular" color="#8047F8" />
+                    <span>Cartão de crédito</span>
+                  </PaymentCard>
+                  <PaymentCard
+                    style={
+                      selectedOption === "debit-card"
+                        ? PaymentStyleOnSelect
+                        : {}
+                    }
+                  >
+                    <input
+                      type="radio"
+                      value="debit-card"
+                      checked={selectedOption === "debit-card"}
+                      onChange={(e) => setSelectedOption(e.target.value)}
+                    />
+                    <Bank size={16} weight="regular" color="#8047F8" />
+                    <span>Cartão de débito</span>
+                  </PaymentCard>
+                  <PaymentCard
+                    style={
+                      selectedOption === "money" ? PaymentStyleOnSelect : {}
+                    }
+                  >
+                    <input
+                      type="radio"
+                      value="money"
+                      checked={selectedOption === "money"}
+                      onChange={(e) => setSelectedOption(e.target.value)}
+                    />
+                    <Money size={16} weight="regular" color="#8047F8" />
+                    <span>Dinheiro</span>
+                  </PaymentCard>
+                </PaymentForm>
+              );
+            }}
+          />
         </BottomtContainer>
       </LeftContainer>
       <RightContainer>
@@ -183,7 +267,7 @@ export function Checkout() {
         <SubmitButton
           type="submit"
           value="Confirmar Pedido"
-          onSubmit={handleSubmit}
+          disabled={isSubmitting}
         />
       </RightContainer>
     </CheckoutForm>
