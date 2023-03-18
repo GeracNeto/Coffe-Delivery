@@ -15,6 +15,7 @@ import { useNavigate } from "react-router-dom";
 import { CoffeesProps } from "../../../../data/coffees";
 import { useContext } from "react";
 import { CoffeesLitsContext } from "../../../../contexts/CoffeesLitsContext";
+import { priceFormatter } from "../../../../utils/formatter";
 
 export function CatalogCard({
   img,
@@ -46,8 +47,7 @@ export function CatalogCard({
       <p>{description}</p>
       <PriceDiv>
         <PriceStyled>
-          <p>R$</p>
-          <span>{price}</span>
+          <span>{priceFormatter.format(price)}</span>
         </PriceStyled>
         <CounterStyled>
           <Counter>
