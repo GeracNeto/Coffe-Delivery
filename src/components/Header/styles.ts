@@ -40,4 +40,27 @@ export const CartStyled = styled.div`
   border-radius: 6px;
   background: ${(props) => props.theme.product["yellow-light"]};
   cursor: pointer;
+  position: relative;
+
+  div {
+    background: ${(props) => props.theme.product["yellow-dark"]};
+
+    color: ${(props) => props.theme.white};
+    position: absolute;
+
+    top: -0.5rem;
+    right: -0.5rem;
+
+    height: 1.35rem;
+    width: 1.35rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    span {
+      font-size: 0.75rem;
+      font-weight: bold;
+    }
+  }
 `;
