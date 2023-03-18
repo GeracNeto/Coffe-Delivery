@@ -1,4 +1,4 @@
-import { FormEvent, useContext, useState } from "react";
+import { FormEvent, useContext, useEffect, useState } from "react";
 
 import {
   MapPinLine,
@@ -34,6 +34,8 @@ import { Counter } from "../Home/components/CatalogCard/styles";
 import { useNavigate } from "react-router-dom";
 
 import { CoffeesLitsContext } from "../../contexts/CoffeesLitsContext";
+import { priceFormatter } from "../../utils/formatter";
+import { useCaclTotal } from "../../hooks/useCalcTotal";
 
 // Conditional style when user selects a payment form
 const PaymentStyleOnSelect = {
@@ -46,6 +48,7 @@ export function Checkout() {
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("");
   const { cart, handleQuantity, removeCoffee } = useContext(CoffeesLitsContext);
+  const total = useCaclTotal();
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault();
@@ -145,33 +148,28 @@ export function Checkout() {
                   <Minus
                     size={14}
                     color="#8047F8"
-                    style={{ cursor: "pointer" }}
                     onClick={() => handleQuantity(item.img, "sub")}
                   />
                   <p>{item.quantity}</p>
                   <Plus
                     size={14}
                     color="#8047F8"
-                    style={{ cursor: "pointer" }}
                     onClick={() => handleQuantity(item.img, "add")}
                   />
                 </Counter>
-                <RemoveContainer
-                  style={{ cursor: "pointer" }}
-                  onClick={() => removeCoffee(item.img)}
-                >
+                <RemoveContainer onClick={() => removeCoffee(item.img)}>
                   <Trash size={16} color="#8047F8" />
                   <p>Remover</p>
                 </RemoveContainer>
               </div>
             </ChangeOrRemoveCoffeeContainer>
-            <span>{item.price}</span>
+            <span>{priceFormatter.format(item.price)}</span>
           </SelectedCoffee>
         ))}
         <FooterContainer>
           <div>
             <p>Total de itens</p>
-            <p>R$ 29,70</p>
+            <p>{priceFormatter.format(total - 3.5)}</p>
           </div>
           <div>
             <p>Entrega</p>
@@ -179,7 +177,7 @@ export function Checkout() {
           </div>
           <div>
             <span>Total</span>
-            <span>R$ 33,20</span>
+            <span>{priceFormatter.format(total)}</span>
           </div>
         </FooterContainer>
         <SubmitButton
