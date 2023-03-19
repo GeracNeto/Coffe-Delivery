@@ -74,12 +74,13 @@ export function Checkout() {
 
   const navigate = useNavigate();
   const [selectedOption, setSelectedOption] = useState("");
-  const { cart, handleQuantity, removeCoffee } = useContext(CoffeesLitsContext);
+  const { cart, handleQuantity, removeCoffee, sendDeliveryData } =
+    useContext(CoffeesLitsContext);
   const total = useCaclTotal();
 
   function handlePurchaseOrder(data: PurchaseOrderFormInputs) {
     navigate("/success");
-    console.log(data);
+    sendDeliveryData(data);
     reset();
   }
 
