@@ -1,4 +1,4 @@
-# ☕Coffee Deliver
+# ☕Coffee Delivery
 
 ## Desafio curso Reactjs - Ignite Rocketseat
 
