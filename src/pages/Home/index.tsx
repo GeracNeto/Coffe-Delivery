@@ -7,13 +7,16 @@ import {
   Slogan,
 } from "./styles";
 
+import { useContext } from "react";
+
 import coffee from "../../assets/coffee.svg";
 import cartIcon from "../../assets/cart_icon.svg";
 import coffeeIcon from "../../assets/coffee_icon.svg";
 import packageIcon from "../../assets/package_icon.svg";
 import timeIcon from "../../assets/time_icon.svg";
+
 import { CatalogCard } from "./components/CatalogCard";
-import { useContext } from "react";
+
 import { CoffeesLitsContext } from "../../contexts/CoffeesLitsContext";
 
 export function Home() {

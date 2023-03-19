@@ -5,12 +5,13 @@ import {
   SuccessContainer,
 } from "./style";
 
+import { useContext } from "react";
+
 import illustration from "../../assets/illustration.svg";
 import location from "../../assets/location.svg";
 import timer from "../../assets/time_icon.svg";
 import money from "../../assets/iconmoney.svg";
-import { useContext } from "react";
-import { Coffees } from "../Home/styles";
+
 import { CoffeesLitsContext } from "../../contexts/CoffeesLitsContext";
 
 export function Success() {

@@ -1,5 +1,3 @@
-import { FormEvent, useContext, useEffect, useState } from "react";
-
 import {
   MapPinLine,
   CurrencyDollar,
@@ -34,8 +32,12 @@ import { Counter } from "../Home/components/CatalogCard/styles";
 import { useNavigate } from "react-router-dom";
 
 import { CoffeesLitsContext } from "../../contexts/CoffeesLitsContext";
+
 import { priceFormatter } from "../../utils/formatter";
+
 import { useCaclTotal } from "../../hooks/useCalcTotal";
+
+import { FormEvent, useContext, useEffect, useState } from "react";
 
 import * as z from "zod";
 import { useForm, Controller } from "react-hook-form";

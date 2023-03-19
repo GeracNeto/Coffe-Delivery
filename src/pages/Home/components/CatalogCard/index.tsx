@@ -9,12 +9,16 @@ import {
   TagContainer,
 } from "./styles";
 
+import { useContext } from "react";
+
 import { Minus, Plus, ShoppingCartSimple } from "phosphor-react";
 
 import { useNavigate } from "react-router-dom";
+
 import { CoffeesProps } from "../../../../data/coffees";
-import { useContext } from "react";
+
 import { CoffeesLitsContext } from "../../../../contexts/CoffeesLitsContext";
+
 import { priceFormatter } from "../../../../utils/formatter";
 
 export function CatalogCard({
