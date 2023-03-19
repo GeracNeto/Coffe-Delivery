@@ -9,8 +9,22 @@ import illustration from "../../assets/illustration.svg";
 import location from "../../assets/location.svg";
 import timer from "../../assets/time_icon.svg";
 import money from "../../assets/iconmoney.svg";
+import { useContext } from "react";
+import { Coffees } from "../Home/styles";
+import { CoffeesLitsContext } from "../../contexts/CoffeesLitsContext";
 
 export function Success() {
+  const { deliveryData } = useContext(CoffeesLitsContext);
+
+  const paymentFormInPortuguese =
+    deliveryData.paymentForm === "credit-card"
+      ? "Cartão de Crédito"
+      : deliveryData.paymentForm === "debit-card"
+      ? "Cartão de débito"
+      : deliveryData.paymentForm === "money"
+      ? "Dinheiro"
+      : "";
+
   return (
     <SuccessContainer>
       <header>
@@ -24,15 +38,21 @@ export function Success() {
             <div>
               <p>
                 Entrega em
-                <span> Rua João Daniel Martinelli, 102</span>
+                <span>
+                  {" "}
+                  {deliveryData.street}, {deliveryData.number},{" "}
+                  {deliveryData.complement}
+                </span>
               </p>
-              <p>Farrapos - Porto Alegre, RS</p>
+              <p>
+                {deliveryData.district} - {deliveryData.city}, {deliveryData.uf}
+              </p>
             </div>
           </LastInfo>
           <LastInfo>
             <img src={timer} alt="location-icon" />
             <div>
-              <p>Previsão de enrtega</p>
+              <p>Previsão de entrega</p>
               <span>20 min - 30 min</span>
             </div>
           </LastInfo>
@@ -40,7 +60,7 @@ export function Success() {
             <img src={money} alt="location-icon" />
             <div>
               <p>Pagamento na entrega</p>
-              <span>Cartão de Crédito</span>
+              <span>{paymentFormInPortuguese}</span>
             </div>
           </LastInfo>
         </LastInfosContainer>
