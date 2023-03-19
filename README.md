@@ -36,8 +36,14 @@
 <br>
 
 <img src="./src/assets/projetcAssets/gif.gif">
+
+## Home
 <img src="./src/assets/projetcAssets/home.jpeg">
+
+## Checkout
 <img src="./src/assets/projetcAssets/checkout.jpeg">
+
+## Success
 <img src="./src/assets/projetcAssets/success.jpeg">
 
 # Install
